@@ -1,22 +1,27 @@
 /* ここに記載する */
-.kintone_container {
+.product_container {
   text-align: center;
+}
+
+.kintone_container {
   background-color: #ffbf00;
 }
 
 .office_container {
-  text-align: center;
   background-color: #1992d4;
 }
 
 .garoon_container {
-  text-align: center;
   background-color: #003399;
 }
 
 .mailwise_container {
-  text-align: center;
   background-color: #df4356;
+}
+
+.product_image {
+  width: 60%;
+  margin: 2% 5%;
 }
 
 .img_kintone {
