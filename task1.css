@@ -1,0 +1,72 @@
+/* ここに記載する */
+.kintone_container {
+  text-align: center;
+  background-color: #ffbf00;
+}
+
+.office_container {
+  text-align: center;
+  background-color: #1992d4;
+}
+
+.garoon_container {
+  text-align: center;
+  background-color: #003399;
+}
+
+.mailwise_container {
+  text-align: center;
+  background-color: #df4356;
+}
+
+.img_kintone {
+  width: 60%;
+  margin: 2% 5%;
+}
+
+.img_office {
+  width: 60%;
+  margin: 2% 5%;
+}
+
+.img_garoon {
+  width: 60%;
+  margin: 2% 5%;
+}
+
+.img_mailwise {
+  width: 60%;
+  margin: 2% 5%;
+}
+
+/* 以下は修正しない */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+.container {
+  padding: 16px;
+  padding-left: 120px;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px dotted #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
