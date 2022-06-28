@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dojo課題</title>
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+.container {
+  padding: 16px;
+  padding-left: 120px;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px dotted #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  padding: 4px 8px;
+  border: 1px solid #000000;
+}
+tr#allFile {
+  color: #000;
+  background:#8fe5ff;
+}
+li {
+    margin-top:5px;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>kintone dojo</h1>
+    <h2>JavaScript課題②</h2>
+  </div>
+</header>
+<main class="container">
+  <h1>ファイル管理一覧</h1>
+  <h2>全てのフォルダとアクセス権を表示</h2>
+  <table>
+    <tr id="allFile">
+      <td>フォルダ名</td>
+      <td>閲覧権限</td>
+      <td>編集権限</td>
+      <td>削除権限</td>
+    </tr>
+    <tr>
+      <td id="f001-folderName"></td>
+      <td id="f001-viewAuth"></td>
+      <td id="f001-editAuth"></td>
+      <td id="f001-deleteAuth"></td>
+    </tr>
+    <tr>
+      <td id="f002-folderName"></td>
+      <td id="f002-viewAuth"></td>
+      <td id="f002-editAuth"></td>
+      <td id="f002-deleteAuth"></td>
+    </tr>
+    <tr>
+      <td id="f003-folderName"></td>
+      <td id="f003-viewAuth"></td>
+      <td id="f003-editAuth"></td>
+      <td id="f003-deleteAuth"></td>
+    </tr>
+</table>
+<h2>閲覧権限が全員にあるフォルダ</h2>
+<ul id="list"></ul>
+</main>
+<script>
+
+  
+  fileManage = {
+                f001: {folderName: "情報システム部", viewAuth: "Everyone", editAuth: "情報システム部", deleteAuth: "情報システム部"},
+                f002:{folderName: "経営管理部", viewAuth: "経営管理部", editAuth: "経営管理部", deleteAuth: "経営管理部" },
+                f003:{folderName: "営業部", viewAuth: "Everyone", editAuth: "営業部", deleteAuth: "営業部"}
+               }
+  
+  //手順2-1 fileManageオブジェクトをコンソール上で表示
+  console.log(fileManage);
+  
+  // 手順2-2 fileManageに格納されている値を全てブラウザに表⽰する
+  ids = Object.keys(fileManage);
+  ids.forEach(id => {
+    //各id(f001, f002, f003)からキーを取得し、変数categoriesに格納
+    const categories = Object.keys(fileManage[id]) 
+    
+    categories.forEach(categoryName =>{
+      // id-category (例:f001-folderName)の形式に変換して data　に格納
+      const data = id + '-' + categoryName; 
+      //テーブルの中身を取得し、fileManageの各idの値を挿入
+      document.getElementById(data).textContent = fileManage[id][categoryName];     
+    })
+
+    //手順2-3 もし閲覧権限がEveryoneなら、該当idのfolderNameを挿入するスクリプト
+    if (fileManage[id]['viewAuth'] === "Everyone") {
+      const list = document.getElementById("list");
+      // li要素を作る
+      const li = document.createElement("li");
+      //<li></li>の内部にfolderNameの値を挿入
+      li.innerText = fileManage[id]['folderName'];
+      //<ul id="list"></ul>の子要素としてliを挿入
+      list.appendChild(li); 
+    } 
+  });
+</script>
+</body>
+</html>
