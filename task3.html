@@ -93,36 +93,51 @@ li {
 
   
   fileManage = {
-                f001: {folderName: "情報システム部", viewAuth: "Everyone", editAuth: "情報システム部", deleteAuth: "情報システム部"},
-                f002:{folderName: "経営管理部", viewAuth: "経営管理部", editAuth: "経営管理部", deleteAuth: "経営管理部" },
-                f003:{folderName: "営業部", viewAuth: "Everyone", editAuth: "営業部", deleteAuth: "営業部"}
-               }
+    f001: {
+          folderName: "情報システム部", 
+          viewAuth: "Everyone", 
+          editAuth: "情報システム部", 
+          deleteAuth: "情報システム部"
+          },
+    f002: {
+          folderName: "経営管理部", 
+          viewAuth: "経営管理部 ", 
+          editAuth: "経営管理部", 
+          deleteAuth: "経営管理部" 
+          },
+    f003: {
+          folderName: "営業部", 
+          viewAuth: "Everyone", 
+          editAuth: "営業部", 
+          deleteAuth: "営業部"
+          }
+    }
   
   //手順2-1 fileManageオブジェクトをコンソール上で表示
   console.log(fileManage);
   
   // 手順2-2 fileManageに格納されている値を全てブラウザに表⽰する
-  ids = Object.keys(fileManage);
-  ids.forEach(id => {
+  const fileIDs = Object.keys(fileManage);
+  fileIDs.forEach(fileID => {
     //各id(f001, f002, f003)からキーを取得し、変数categoriesに格納
-    const categories = Object.keys(fileManage[id]) 
+    const categories = Object.keys(fileManage[fileID]) 
     
     categories.forEach(categoryName =>{
-      // id-category (例:f001-folderName)の形式に変換して data　に格納
-      const data = `${id}-${categoryName}`; 
-      //テーブルの中身を取得し、fileManageの各idの値を挿入
-      document.getElementById(data).textContent = fileManage[id][categoryName];     
+      // fileID-category (例:f001-folderName)の形式に変換して data　に格納
+      const data = `${fileID}-${categoryName}`; 
+      //テーブルの中身を取得し、fileManageの各fileIDの値を挿入
+      document.getElementById(data).textContent = fileManage[fileID][categoryName];     
     })
 
-    //手順2-3 もし閲覧権限がEveryoneなら、該当idのfolderNameを挿入するスクリプト
-    if (fileManage[id]['viewAuth'] === "Everyone") {
-      const list = document.getElementById("list");
+    //手順2-3 もし閲覧権限がEveryoneなら、該当fileIDのfolderNameを挿入するスクリプト
+    if (fileManage[fileID]['viewAuth'] === "Everyone") {
+      const everyoneAccessRightList = document.getElementById("list");
       // li要素を作る
       const li = document.createElement("li");
       //<li></li>の内部にfolderNameの値を挿入
-      li.innerText = fileManage[id]['folderName'];
+      li.innerText = fileManage[fileID]['folderName'];
       //<ul id="list"></ul>の子要素としてliを挿入
-      list.appendChild(li); 
+      everyoneAccessRightList.appendChild(li); 
     } 
   });
 </script>
