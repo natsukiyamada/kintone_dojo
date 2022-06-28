@@ -109,7 +109,7 @@ li {
     
     categories.forEach(categoryName =>{
       // id-category (例:f001-folderName)の形式に変換して data　に格納
-      const data = id + '-' + categoryName; 
+      const data = `${id}-${categoryName}`; 
       //テーブルの中身を取得し、fileManageの各idの値を挿入
       document.getElementById(data).textContent = fileManage[id][categoryName];     
     })
