@@ -53,15 +53,15 @@ header h2 {
 <script>
  'use strict';
   //月額価格を数値に変換
-  let MonthlyPrice = parseInt(document.getElementById('price').textContent);
 
-  const selectedChekBox = document.querySelectorAll("input[class='chk']"); 
+  const optionPriceCheckBox = document.querySelectorAll("input[class='chk']"); 
   const secureOptionPrice = 1250;
-  const discOptionPricePer10Gb = 1000;
+  const discOptionPrice = 1000;
 
    //チェックボックスにチェックが入っているかを判定する関数
   const checkBoxFlag = (price,checkBoxIndex) => {
-    if (selectedChekBox[checkBoxIndex].checked) {
+    let MonthlyPrice = Number(document.getElementById('price').textContent);
+    if (optionPriceCheckBox[checkBoxIndex].checked) {
       MonthlyPrice += price;
     } else {
       MonthlyPrice -= price;
@@ -70,14 +70,14 @@ header h2 {
   };
 
   //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出す
-  selectedChekBox[0].addEventListener('change', (event) => {
+  optionPriceCheckBox[0].addEventListener('change', (event) => {
     checkBoxFlag(secureOptionPrice,0);
   });
  
-  selectedChekBox[1].addEventListener('change', (event) => {
-    checkBoxFlag(discOptionPricePer10Gb,1);
+  optionPriceCheckBox[1].addEventListener('change', (event) => {
+    checkBoxFlag(discOptionPrice,1);
   });
-
+  
 </script>
 </body>
 </html>

@@ -69,10 +69,39 @@ header h2 {
 <script>
   'use strict';
    //月額価格を数値に変換
-  const MonthlyBasePrice = parseInt(document.getElementById('price').textContent);
-  const selectedChekBox = document.querySelectorAll("input[class='chk']"); 
+  const MonthlyBasePrice = Number(document.getElementById('price').textContent);
+  const optionPriceCheckBoxes = document.querySelectorAll("input[class='chk']"); 
   const secureOptionPricePerPerson = 250;
-  const discOptionPricePer10Gb = 1000;
+  const BasediscOptionPrice = 1000;
+
+  //チェックボックスにチェックが入っているかを判定する関数
+  //チェックが入っていれば一人あたりのオプション価格を返し、入っていないなら0を返す
+  const checkBoxFlag = (optionPrice,checkBoxIndex,checkBoxElements) => {
+    if (optionPriceCheckBoxes[checkBoxIndex].checked) {
+      return optionPrice;
+    } 
+
+    if (!optionPriceCheckBoxes[checkBoxIndex].checked){
+      optionPrice = 0;
+      return optionPrice;
+    }
+  };
+
+  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、セキュアオプション価格の変数に格納
+  
+  /* optionPriceCheckBoxes.forEach((element,i) => {
+    element.addEventListener('change', (event) => {
+    secureOptionPrice = checkBoxFlag(secureOptionPricePerPerson,i)
+  });
+  }) */
+
+  let secureOptionPrice = 0;
+  
+  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、ディスク増設価格の変数に格納
+  let discOptionPrice = 0;
+  optionPriceCheckBoxes[1].addEventListener('change', (event) => {
+   discOptionPrice = checkBoxFlag(BasediscOptionPrice,1)
+  });
 
   //ドロップダウンで選択されている数字を返す関数
   const dropdown_number = (i) => {
@@ -80,31 +109,9 @@ header h2 {
     return selectedDropDown.value
   }
 
-  //チェックボックスにチェックが入っているかを判定する関数
-  //チェックが入っていれば一人あたりのオプション価格を返し、入っていないなら0を返す
-  const checkBoxFlag = (optionPrice,checkBoxIndex) => {
-    if (selectedChekBox[checkBoxIndex].checked) {
-      return optionPrice;
-    } else {
-      optionPrice = 0;
-      return optionPrice;
-    }
-  };
-
-  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、セキュアオプション価格の変数に格納
-  let secureOptionPrice = 0;
-  selectedChekBox[0].addEventListener('change', (event) => {
-    secureOptionPrice = checkBoxFlag(secureOptionPricePerPerson,0)
-  });
-  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、ディスク増設価格の変数に格納
-  let discOptionPrice = 0;
-  selectedChekBox[1].addEventListener('change', (event) => {
-   discOptionPrice = checkBoxFlag(discOptionPricePer10Gb,1)
-  });
-
   // 計算ボタンが押されたら、合計金額を計算してHTMLの月額金額に挿入
   document.getElementById('btn').onclick = () => {
-    let TotalMontlyPrice = MonthlyBasePrice + secureOptionPrice * dropdown_number(0) + discOptionPrice * dropdown_number(1) ;
+    const TotalMontlyPrice = MonthlyBasePrice + secureOptionPrice * dropdown_number(0) + discOptionPrice * dropdown_number(1) ;
     document.getElementById('price').textContent = TotalMontlyPrice;
   }
 </script>
