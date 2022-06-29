@@ -91,7 +91,6 @@ li {
 </main>
 <script>
 
-  
   fileManage = {
     f001: {
           folderName: "情報システム部", 
@@ -117,25 +116,25 @@ li {
   console.log(fileManage);
   
   // 手順2-2 fileManageに格納されている値を全てブラウザに表⽰する
-  const fileIDs = Object.keys(fileManage);
-  fileIDs.forEach(fileID => {
+  const fileIds = Object.keys(fileManage);
+  fileIds.forEach(fileId => {
     //各id(f001, f002, f003)からキーを取得し、変数categoriesに格納
-    const categories = Object.keys(fileManage[fileID]) 
+    const categories = Object.keys(fileManage[fileId]) 
     
     categories.forEach(categoryName =>{
-      // fileID-category (例:f001-folderName)の形式に変換して data　に格納
-      const data = `${fileID}-${categoryName}`; 
-      //テーブルの中身を取得し、fileManageの各fileIDの値を挿入
-      document.getElementById(data).textContent = fileManage[fileID][categoryName];     
+      // fileId-category (例:f001-folderName)の形式に変換して data　に格納
+      const data = `${fileId}-${categoryName}`; 
+      //テーブルの中身を取得し、fileManageの各fileIdの値を挿入
+      document.getElementById(data).textContent = fileManage[fileId][categoryName];     
     })
 
-    //手順2-3 もし閲覧権限がEveryoneなら、該当fileIDのfolderNameを挿入するスクリプト
-    if (fileManage[fileID]['viewAuth'] === "Everyone") {
+    //手順2-3 もし閲覧権限がEveryoneなら、該当fileIdのfolderNameを挿入するスクリプト
+    if (fileManage[fileId]['viewAuth'] === "Everyone") {
       const everyoneAccessRightList = document.getElementById("list");
       // li要素を作る
       const li = document.createElement("li");
       //<li></li>の内部にfolderNameの値を挿入
-      li.innerText = fileManage[fileID]['folderName'];
+      li.innerText = fileManage[fileId]['folderName'];
       //<ul id="list"></ul>の子要素としてliを挿入
       everyoneAccessRightList.appendChild(li); 
     } 
