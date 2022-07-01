@@ -59,7 +59,7 @@ header h2 {
   const discOptionPrice = 1000;
 
    //チェックボックスにチェックが入っているかを判定する関数
-  const checkBoxFlag = (price,checkBoxIndex) => {
+  const insertCalculatedOptionPrice = (price,checkBoxIndex) => {
     let MonthlyPrice = Number(document.getElementById('price').textContent);
     if (optionPriceCheckBox[checkBoxIndex].checked) {
       MonthlyPrice += price;
@@ -69,13 +69,13 @@ header h2 {
     document.getElementById('price').textContent = MonthlyPrice;
   };
 
-  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出す
+  //チェックが入った/解除されたタイミングでinsertCalculatedOptionPrice関数を呼び出す
   optionPriceCheckBox[0].addEventListener('change', (event) => {
-    checkBoxFlag(secureOptionPrice,0);
+    insertCalculatedOptionPrice(secureOptionPrice,0);
   });
  
   optionPriceCheckBox[1].addEventListener('change', (event) => {
-    checkBoxFlag(discOptionPrice,1);
+    insertCalculatedOptionPrice(discOptionPrice,1);
   });
   
 </script>
