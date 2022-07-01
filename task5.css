@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+	padding: 5%;
+}
+
+main{
+	height: 100%;
+}
+
+table {
+	height: 30%;
+	margin:auto;
+	text-align: center;
+}
+
+td {
+  border: 1px solid;
+	vertical-align: middle; 
+	padding: 5px;
+}
+
+
+.ir{
+	background-color: antiquewhite;
+}
+
+.company{
+	background-color: rgb(199, 199, 230);
+}
+
+.product{
+	background-color: rgb(196, 228, 208);
+}
+
