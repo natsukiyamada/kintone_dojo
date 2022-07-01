@@ -8,7 +8,8 @@
 		//質問：以下のコードは不要という認識でよろしいでしょうか。（初期値ですでに['未振り返り']が設定されているため）
 		//event.record['Table']['value'][0]['value']['状況']['value'] = ['未振り返り'];　		
 		
-		const ActionFiveChoice = {
+		const actionFiveChoice = {
+
 			0:'不屈の心体',
 			1:'理想への共感',
 			2:'心を動かす',
