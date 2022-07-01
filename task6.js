@@ -3,7 +3,9 @@
     kintone.events.on('app.record.create.show', (event) => {
 		
 		//最初の行に値を挿入
-		event.record['Table']['value'][0]['value']['Action5'].value = "あくなき探求";
+		const firstTableRow = event.record['Table']['value'][0]
+		firstTableRow.['value']['Action5'].value = "あくなき探求";
+
 		
 		//質問：以下のコードは不要という認識でよろしいでしょうか。（初期値ですでに['未振り返り']が設定されているため）
 		//event.record['Table']['value'][0]['value']['状況']['value'] = ['未振り返り'];　		
