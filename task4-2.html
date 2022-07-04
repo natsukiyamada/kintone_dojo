@@ -74,26 +74,21 @@ header h2 {
   const secureOptionPricePerPerson = 250;
   const BasediscOptionPrice = 1000;
 
-  //チェックボックスにチェックが入っているかを判定する関数
-  //チェックが入っていれば一人あたりのオプション価格を返し、入っていないなら0を返す
-  const checkBoxFlag = (optionPrice,checkBoxElements,checkBoxIndex) => {
+  const setOptionPrice = (optionPrice,checkBoxElements,checkBoxIndex) => {
     if (checkBoxElements[checkBoxIndex].checked) {
       return optionPrice;
     } 
-    if (!checkBoxElements[checkBoxIndex].checked){
-      optionPrice = 0;
-      return optionPrice;
-    }
+    return 0;
   };
-  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、セキュアオプション価格の変数に格納
+  //チェックが入った/解除されたタイミングでsetOptionPrice関数を呼び出し、セキュアオプション価格の変数に格納
   let secureOptionPrice = 0;
   optionPriceCheckBoxes[0].addEventListener('change', (event) => {
-    secureOptionPrice = checkBoxFlag(secureOptionPricePerPerson, optionPriceCheckBoxes,0)
+    secureOptionPrice = setOptionPrice(secureOptionPricePerPerson, optionPriceCheckBoxes,0)
   });
-  //チェックが入った/解除されたタイミングでcheckBoxFlag関数を呼び出し、ディスク増設価格の変数に格納
+  //チェックが入った/解除されたタイミングでsetOptionPrice関数を呼び出し、ディスク増設価格の変数に格納
   let discOptionPrice = 0;
   optionPriceCheckBoxes[1].addEventListener('change', (event) => {
-   discOptionPrice = checkBoxFlag(BasediscOptionPrice, optionPriceCheckBoxes,1)
+   discOptionPrice = setOptionPrice(BasediscOptionPrice, optionPriceCheckBoxes,1)
   });
 
   //ドロップダウンで選択されている数字を返す関数
