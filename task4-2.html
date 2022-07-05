@@ -74,34 +74,17 @@ header h2 {
   const secureOptionPricePerPerson = 250;
   const BasediscOptionPrice = 1000;
 
-  const setOptionPrice = (optionPrice,checkBoxElements,checkBoxIndex) => {
-    if (checkBoxElements[checkBoxIndex].checked) {
-      return optionPrice;
-    } 
-    return 0;
+  const getOptionPrice = (i, type) => {
+    const price = type === 'secure' ? secureOptionPricePerPerson : BasediscOptionPrice;
+    const selectedDropDown = document.getElementsByClassName('slct')[i];
+    return optionPriceCheckBoxes[i].checked ? selectedDropDown.value * price : 0;
   };
-  //チェックが入った/解除されたタイミングでsetOptionPrice関数を呼び出し、セキュアオプション価格の変数に格納
-  let secureOptionPrice = 0;
-  optionPriceCheckBoxes[0].addEventListener('change', (event) => {
-    secureOptionPrice = setOptionPrice(secureOptionPricePerPerson, optionPriceCheckBoxes,0)
-  });
-  //チェックが入った/解除されたタイミングでsetOptionPrice関数を呼び出し、ディスク増設価格の変数に格納
-  let discOptionPrice = 0;
-  optionPriceCheckBoxes[1].addEventListener('change', (event) => {
-   discOptionPrice = setOptionPrice(BasediscOptionPrice, optionPriceCheckBoxes,1)
-  });
-
-  //ドロップダウンで選択されている数字を返す関数
-  const dropdown_number = (i) => {
-    let selectedDropDown = document.getElementsByClassName('slct')[i];
-    return selectedDropDown.value
-  }
 
   // 計算ボタンが押されたら、合計金額を計算してHTMLの月額金額に挿入
   document.getElementById('btn').onclick = () => {
-    const TotalMontlyPrice = MonthlyBasePrice + secureOptionPrice * dropdown_number(0) + discOptionPrice * dropdown_number(1) ;
+    const TotalMontlyPrice = MonthlyBasePrice + getOptionPrice(0, 'secure') + getOptionPrice(1, 'disc');
     document.getElementById('price').textContent = TotalMontlyPrice;
-  }
+  };
 </script>
 </body>
 </html>
