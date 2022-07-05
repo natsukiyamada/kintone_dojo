@@ -1,12 +1,7 @@
 (() => {
   'use strict';
     kintone.events.on('app.record.create.show', (event) => {
-		
-		//最初の行に値を挿入 →こちらは削除しました。
-	/* 	const firstTableRow = event.record['Table']['value'][0]
-		firstTableRow['value']['Action5']['value'] = "あくなき探求";
-		firstTableRow['value']['状況']['value'] = ['未振り返り']; */
-		
+
 		const actionFiveLists = [
 			'あくなき探求',
 			'不屈の心体',
@@ -16,11 +11,19 @@
 			'公明正大',
 		]
 
-		actionFiveLists.forEach((action) => {
+		for (let index = 0; index < actionFiveLists.length; index++) {
+			
+			if (actionFiveLists[index] === actionFiveLists[0]) {
+				const firstTableRow = event.record['Table']['value'][0]
+				firstTableRow['value']['Action5']['value'] = actionFiveLists[0];
+				firstTableRow['value']['状況']['value'] = ['未振り返り'];
+				continue;
+			} 
+
 			event.record['Table'].value.push({
 				value: {
 					'Action5':{
-						value:`${action}`,
+						value:`${actionFiveLists[index]}`,
 						type:'DROP_DOWN'
 					},
 					'状況':{
@@ -33,11 +36,7 @@
 					},
 				}
 			});
-		})
-		
-		//テーブル一行目の、アクション５に何も挿入されていない空白行を削除
-		const TableRow = event.record['Table']['value']
-		TableRow.splice(0,1); //ここがマジックナンバーになってしまう→他の方法でマジックナンバーを避けるべきでしょうか。
+		}
 		return event;
 	});
 })();
