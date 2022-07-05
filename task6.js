@@ -2,29 +2,25 @@
   'use strict';
     kintone.events.on('app.record.create.show', (event) => {
 		
-		//最初の行に値を挿入
-		const firstTableRow = event.record['Table']['value'][0]
-		firstTableRow.['value']['Action5'].value = "あくなき探求";
-
+		//最初の行に値を挿入 →こちらは削除しました。
+	/* 	const firstTableRow = event.record['Table']['value'][0]
+		firstTableRow['value']['Action5']['value'] = "あくなき探求";
+		firstTableRow['value']['状況']['value'] = ['未振り返り']; */
 		
-		//質問：以下のコードは不要という認識でよろしいでしょうか。（初期値ですでに['未振り返り']が設定されているため）
-		//event.record['Table']['value'][0]['value']['状況']['value'] = ['未振り返り'];　		
-		
-		const actionFiveChoice = {
+		const actionFiveLists = [
+			'あくなき探求',
+			'不屈の心体',
+			'理想への共感',
+			'心を動かす',
+			'知識を増やす',
+			'公明正大',
+		]
 
-			0:'不屈の心体',
-			1:'理想への共感',
-			2:'心を動かす',
-			3:'知識を増やす',
-			4:'公明正大',
-		};
-
-		const keys = Object.keys(ActionFiveChoice);
-		keys.forEach((key) => {
+		actionFiveLists.forEach((action) => {
 			event.record['Table'].value.push({
 				value: {
 					'Action5':{
-						value:`${ActionFiveChoice[key]}`,
+						value:`${action}`,
 						type:'DROP_DOWN'
 					},
 					'状況':{
@@ -38,6 +34,10 @@
 				}
 			});
 		})
+		
+		//テーブル一行目の、アクション５に何も挿入されていない空白行を削除
+		const TableRow = event.record['Table']['value']
+		TableRow.splice(0,1); //ここがマジックナンバーになってしまう→他の方法でマジックナンバーを避けるべきでしょうか。
 		return event;
-		});
+	});
 })();
