@@ -39,19 +39,19 @@
 				for (let i = 0; i < tdElements.length; i++) { 
 					
 					if (tdElements[i]  === cellElemForDay) {
-						tdElements[i].appendChild(document.createTextNode(`${eachdata.day.value}`));
+						tdElements[i].appendChild(document.createTextNode(`${eachData.day.value}`));
 					}
 					
 					if (tdElements[i] === cellElemForCategory) {
-						tdElements[i].appendChild(document.createTextNode(`${eachdata.category.value}`));
-						tdElements[i].setAttribute('class',`${eachdata.label.value}`)
+						tdElements[i].appendChild(document.createTextNode(`${eachData.category.value}`));
+						tdElements[i].setAttribute('class',`${eachData.label.value}`)
 					}
 					
 					if (tdElements[i] === cellElemForNews) {
 						const newsLink = document.createElement('a');
-						newsLink.textContent = eachdata.content.value;
-						newsLink.href = eachdata.url.value;		
-						newsLink.target = eachdata.target.value; 		
+						newsLink.textContent = eachData.content.value;
+						newsLink.href = eachData.url.value;		
+						newsLink.target = eachData.target.value; 		
 						tdElements[i].appendChild(newsLink);
 					}
 				}
