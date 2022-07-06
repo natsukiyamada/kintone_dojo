@@ -12,7 +12,7 @@
 				const SortedactionfiveLists = Object.keys(actionfiveLists).map(function(key) {
 					return actionfiveLists[key];
 				}).sort(function(a, b) {
-					return (a.index < b.index) ? -1 : 1;  //オブジェクトの昇順ソート
+					return (a.index < b.index) ? -1 : 1; 
 				})
 
 				console.log(SortedactionfiveLists);
@@ -33,7 +33,7 @@
 								type:'DROP_DOWN'
 							},
 							'状況':{
-								value:['未振り返り'], //自分用→'状況'のvalueは配列で指定されているので配列を挿入する
+								value:['未振り返り'], 
 								type:'CHECK_BOX'
 							},
 							'課題':{
