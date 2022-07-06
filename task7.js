@@ -19,7 +19,7 @@
 		const today = dateFns.format(new Date(), 'YYYYMMDD') 
 
 		//管理番号の値があるなら管理番号を、空なら空をManegementNumberに挿入（次行のselectedProductも同じ）
-		const ManagementNumber = event.record.管理番号.value ? event.record.管理番号.value : "";
+		const managementNumber = event.record.管理番号.value ? event.record.管理番号.value : "";
 	
 		//製品名=>製品の略称に変換
 		const getSelectedProductName = (productValue) => {
