@@ -22,24 +22,23 @@
 		const ManagementNumber = event.record.管理番号.value ? event.record.管理番号.value : "";
 	
 		//製品名=>製品の略称に変換
-		let selectedProduct = "";
-		const getSelectedProductName = (tableValue) => {
+		const getSelectedProductName = (productValue) => {
 			if (tableValue === 'kintone') {
-					return selectedProduct = 'KN'
+					return 'KN'
 				} 
 				if(tableValue === 'Garoon'){
-					return selectedProduct = 'GR';		
+					return 'GR';		
 				}
 				if(tableValue === 'サイボウズ Office'){
-					return selectedProduct = 'OF';
+					return 'OF';
 				}
 				if(tableValue === 'Mailwise'){
-					return selectedProduct = 'MW';
+					return 'MW';
 				}
-				return selectedProduct;
+				return "";
 		  }
 
-		selectedProduct = getSelectedProductName(event.record.サイボウズ製品.value);
+		const selectedProduct = getSelectedProductName(event.record.サイボウズ製品.value);
     
 		event.record.重複禁止項目_文字列.value = `${today}-${selectedProduct}-${ManagementNumber}`;
 		return event;
