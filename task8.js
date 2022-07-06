@@ -15,21 +15,11 @@
 					return (a.index < b.index) ? -1 : 1; 
 				})
 
-				console.log(SortedactionfiveLists);
-
-				for (let i = 0; i < SortedactionfiveLists.length; i++) {
-					
-					if (SortedactionfiveLists[i].index === '0') {
-						const firstTableRow = event.record['Table']['value'][0]
-						firstTableRow['value']['Action5']['value'] = SortedactionfiveLists[i].label;
-						firstTableRow['value']['状況']['value'] = ['未振り返り'];
-						continue;
-					}
-					
+				SortedactionfiveLists.forEach((action) => {
 					event.record['Table'].value.push({
 						value: {
 							'Action5':{
-								value:`${SortedactionfiveLists[i].label}`,
+								value:`${action.label}`,
 								type:'DROP_DOWN'
 							},
 							'状況':{
@@ -42,9 +32,10 @@
 							},
 						}
 					});
-				}
+				})
+				
+				event.record['Table']['value'].shift()
 				return event;
-
 			}).catch((error) =>{
 				console.log(error);
 			})
