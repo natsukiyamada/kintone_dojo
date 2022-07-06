@@ -12,14 +12,6 @@
 		]
 
 		for (let index = 0; index < actionFiveLists.length; index++) {
-			
-			if (actionFiveLists[index] === "あくなき探求") {
-				const firstTableRow = event.record['Table']['value'][0]
-				firstTableRow['value']['Action5']['value'] = actionFiveLists[0];
-				firstTableRow['value']['状況']['value'] = ['未振り返り'];
-				continue;
-			} 
-
 			event.record['Table'].value.push({
 				value: {
 					'Action5':{
@@ -38,6 +30,7 @@
 				}
 			});
 		}
+		event.record['Table']['value'].shift()
 		return event;
 	});
 })();
