@@ -7,11 +7,14 @@
 	});
 
 	const targetFieldCode = [
+	  'app.record.create.show',
+	  'app.record.edit.show',
 		'app.record.create.change.サイボウズ製品',
 		'app.record.create.change.管理番号',
 		'app.record.edit.change.サイボウズ製品',
 		'app.record.edit.change.管理番号',
 	];
+
 
 	kintone.events.on(targetFieldCode,(event)=>{
 		
