@@ -13,7 +13,7 @@
 
 		for (let index = 0; index < actionFiveLists.length; index++) {
 			
-			if (actionFiveLists[index] === actionFiveLists[0]) {
+			if (actionFiveLists[index] === "あくなき探求") {
 				const firstTableRow = event.record['Table']['value'][0]
 				firstTableRow['value']['Action5']['value'] = actionFiveLists[0];
 				firstTableRow['value']['状況']['value'] = ['未振り返り'];
