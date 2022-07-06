@@ -15,11 +15,21 @@
 					return (a.index < b.index) ? -1 : 1;  //オブジェクトの昇順ソート
 				})
 
-				SortedactionfiveLists.forEach((action) => {
+				console.log(SortedactionfiveLists);
+
+				for (let i = 0; i < SortedactionfiveLists.length; i++) {
+					
+					if (SortedactionfiveLists[i].index === '0') {
+						const firstTableRow = event.record['Table']['value'][0]
+						firstTableRow['value']['Action5']['value'] = SortedactionfiveLists[i].label;
+						firstTableRow['value']['状況']['value'] = ['未振り返り'];
+						continue;
+					}
+					
 					event.record['Table'].value.push({
 						value: {
 							'Action5':{
-								value:`${action.label}`,
+								value:`${SortedactionfiveLists[i].label}`,
 								type:'DROP_DOWN'
 							},
 							'状況':{
@@ -32,10 +42,7 @@
 							},
 						}
 					});
-				})
-				const TableRow = event.record['Table']['value']
-				TableRow.splice(0,1);
-				
+				}
 				return event;
 
 			}).catch((error) =>{
