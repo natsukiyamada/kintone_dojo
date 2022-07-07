@@ -13,51 +13,6 @@
   <table id="cybozuNewsTable"></table>
 </main>
 </body>
-<script>
- 'use strict';
-	const getDojoData = async () => {
-		const query = 'limit 10';
-		await axios.get('https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo',
-		{params: {
-			id: 'dojo',
-			query: query,
-		}}).then((value) =>{
-			const keys = Object.keys(value.data); 
-			keys.forEach((key)=>{ 
-				const eachData = value.data[key]
-
-				const table = document.getElementById('cybozuNewsTable') 
-				const trElem = table.insertRow(-1);
-
-				const cellElemForDay = trElem.insertCell(0);
-				const cellElemForCategory = trElem.insertCell(1);
-				const cellElemForNews = trElem.insertCell(2);
-				const tdElements = [cellElemForDay,cellElemForCategory,cellElemForNews]
-
-				tdElements.forEach((tdElement)=>{
-					if (tdElements === cellElemForDay) {
-						tdElement.appendChild(document.createTextNode(`${eachData.day.value}`));
-					}
-					
-					if (tdElement === cellElemForCategory) {
-						tdElement.appendChild(document.createTextNode(`${eachData.category.value}`));
-						tdElement.setAttribute('class',`${eachData.label.value}`)
-					}
-					
-					if (tdElement === cellElemForNews) {
-						const newsLink = document.createElement('a');
-						newsLink.textContent = eachData.content.value;
-						newsLink.href = eachData.url.value;		
-						newsLink.target = eachData.target.value; 		
-						tdElement.appendChild(newsLink);
-					}
-				})
-				
-			})
-		 }).catch( (error) =>{ 
-			console.log(error)
-		 });
-	}
-	getDojoData();
+<script src="./task5.js">
 </script>
 </html>
