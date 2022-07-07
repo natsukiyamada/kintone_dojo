@@ -11,19 +11,22 @@
 		
 		return kintone.api(kintone.api.url('/k/v1/records.json', true), 'GET', httpsRequestBody).then((resp) => {
 		
-			const handleDuplication = () => {
-				const result = window.confirm('レコードが重複しています。このまま保存しますか？');
-			  return result ? true:false;
-			}
-			
-			if (resp.records.length !== 0) {
-				return handleDuplication() ? event : false;
-			} 
-
 			if (resp.records.length === 0) {
 				return event;
 			}
 
+			const handleDuplication = () => {
+				const result = window.confirm('レコードが重複しています。このまま保存しますか？');
+			  return result;
+			}
+			
+			const res = handleDuplication();
+			
+			if (!res) {
+				return false;
+			}
+			
+			return event;
 		}).catch((error) =>{
 			console.log(error)
 		});
