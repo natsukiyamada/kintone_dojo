@@ -7,15 +7,15 @@
 			}
 			return kintone.api(kintone.api.url('/k/v1/app/form/fields.json', true), 'GET', httpsRequestBody).then((resp) => {
 				const tableFields =  resp['properties']['Table']['fields']
-				const actionfiveLists = tableFields['Action5']['options'];
+				const actionFiveLists = tableFields['Action5']['options'];
 				
-				const SortedactionfiveLists = Object.keys(actionfiveLists).map(function(key) {
-					return actionfiveLists[key];
+				const SortedActionFiveLists = Object.keys(actionFiveLists).map(function(key) {
+					return actionFiveLists[key];
 				}).sort(function(a, b) {
 					return (a.index < b.index) ? -1 : 1; 
 				})
 
-				SortedactionfiveLists.forEach((action) => {
+				SortedActionFiveLists.forEach((action) => {
 					event.record['Table'].value.push({
 						value: {
 							'Action5':{
